@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Akash!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0e68c; /* Light yellow background */
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+            z-index: 1;
+            overflow-x: hidden;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive; /* Fancy font for the title */
+            color: #ff6347;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 20px;
+            margin: 20px auto;
+            position: relative;
+            z-index: 2; /* Place image above bubbles */
+        }
+        .message {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2; /* Place text above bubbles */
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2; /* Place container above bubbles */
+        }
+        #audioButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            background-color: #ff6347;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2; /* Place button above bubbles */
+        }
+        /* Bubbles styling */
+        .bubbles {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 3; /* Place bubbles above all content */
+        }
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(135, 206, 235, 0.8); /* Light blue color */
+            border-radius: 50%;
+            animation: rise 7s infinite linear;
+            opacity: 0;
+        }
+        .bubble:nth-child(odd) {
+            background-color: rgba(255, 182, 193, 0.8); /* Light pink color */
+        }
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥳🎉Wish You Happy Birthday, Akash !🎉🥳</h1>
+        <img src="1725379961067.jpg" alt="Friend's Image"> 
+        <div class="message">
+            <p>Wishing you a day filled with love, joy, and happiness. May all your dreams come true!</p>
+        </div>
+        <button id="audioButton" onclick="toggleAudio()">Play</button>
+    </div>
+
+    <!-- Bubbles Container -->
+    <div class="bubbles" id="bubbles"></div>
+
+    <!-- Background music -->
+    <audio id="backgroundAudio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- JavaScript -->
+    <script>
+        const audio = document.getElementById('backgroundAudio');
+        const audioButton = document.getElementById('audioButton');
+        const bubbles = document.getElementById('bubbles');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                audioButton.textContent = 'Pause';
+                startBubbles();
+            } else {
+                audio.pause();
+                audioButton.textContent = 'Play';
+                stopBubbles();
+            }
+        }
+
+        function startBubbles() {
+            for (let i = 0; i < 100; i++) {  // Increased number of bubbles
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.width = `${Math.random() * 20 + 10}px`; // Random size
+                bubble.style.height = bubble.style.width;
+                bubble.style.animationDelay = `${Math.random() * 3}s`;
+                bubbles.appendChild(bubble);
+            }
+        }
+
+        function stopBubbles() {
+            bubbles.innerHTML = '';  // Remove bubbles when music stops
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
